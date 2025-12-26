@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Infraestructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Communication", "MyRecipeBook.Communication\MyRecipeBook.Communication.csproj", "{4EDD2573-5EA9-427D-A6AB-8C8C2C35968F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Exception", "MyRecipeBook.Exception\MyRecipeBook.Exception.csproj", "{603DF5C5-47DF-4815-8088-4ECCB6345318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Exceptions", "MyRecipeBook.Exception\MyRecipeBook.Exceptions.csproj", "{603DF5C5-47DF-4815-8088-4ECCB6345318}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

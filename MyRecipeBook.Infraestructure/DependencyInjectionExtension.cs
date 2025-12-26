@@ -1,0 +1,34 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using MyRecipeBook.Domain.Repositories;
+using MyRecipeBook.Domain.Repositories.User;
+using MyRecipeBook.Infraestructure.DataAccess;
+using MyRecipeBook.Infraestructure.DataAccess.Repositories;
+
+namespace MyRecipeBook.Infraestructure
+{
+    public static class DependencyInjectionExtension
+    {
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            AddRepositories(services);
+            AddDbContext(services, configuration);
+        }
+
+        private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("ConnectionSQLServer");
+            services.AddDbContext<MyRecipeBookDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+            });
+        }
+        private static void AddRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
+            services.AddScoped<IUserReadOnlyRepository, UserRepository>();            
+        }
+    }
+}
