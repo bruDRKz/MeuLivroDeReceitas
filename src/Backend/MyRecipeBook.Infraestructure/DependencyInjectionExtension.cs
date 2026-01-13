@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentMigrator.Runner;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Infraestructure.DataAccess;
 using MyRecipeBook.Infraestructure.DataAccess.Repositories;
+using MyRecipeBook.Infraestructure.Extensions;
+using System.Reflection;
 
 namespace MyRecipeBook.Infraestructure
 {
@@ -14,11 +17,12 @@ namespace MyRecipeBook.Infraestructure
         {
             AddRepositories(services);
             AddDbContext(services, configuration);
+            AdicionarFluentMigrator(services, configuration);
         }
 
         private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("ConnectionSQLServer");
+            var connectionString = configuration.ConnectionString();
             services.AddDbContext<MyRecipeBookDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
@@ -29,6 +33,19 @@ namespace MyRecipeBook.Infraestructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();            
+        }
+        private static void AdicionarFluentMigrator(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.ConnectionString();
+            services.AddFluentMigratorCore()
+                .ConfigureRunner(options => 
+                {
+                    // Define o banco de dados como SQL Server, para realizar as migrations via FluentMigrator
+                    options
+                    .AddSqlServer()
+                    .WithGlobalConnectionString(connectionString)
+                    .ScanIn(Assembly.Load("MyRecipeBook.Infraestructure")).For.All();
+                });                
         }
     }
 }
