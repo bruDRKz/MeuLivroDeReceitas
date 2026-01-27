@@ -4,6 +4,6 @@
     {
         public long Id { get; set; }
         public bool Active { get; set; } = true;
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
-    }
+        public DateTime CreateOn { get; set; } = DateTime.UtcNow; //Eu escrevi errado na migration...
+    } 
 }

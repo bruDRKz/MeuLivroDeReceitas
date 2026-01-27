@@ -41,7 +41,7 @@ namespace MyRecipeBook.Application.UseCases.User.Register
 
             return new ResponseRegisterUserJson
             {
-                Name = request.Name,
+                Name = user.Name,
             };
         }
 
@@ -63,7 +63,7 @@ namespace MyRecipeBook.Application.UseCases.User.Register
                 var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
 
                 throw new ErrorOnValidationException(errors);
-            }
+            }            
         }
     }
 }

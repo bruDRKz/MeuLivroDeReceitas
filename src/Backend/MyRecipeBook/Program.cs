@@ -1,7 +1,9 @@
 using MyRecipeBook.Application;
 using MyRecipeBook.Filters;
 using MyRecipeBook.Infraestructure;
+using MyRecipeBook.Infraestructure.Migrations;
 using MyRecipeBook.Middleware;
+using MyRecipeBook.Infraestructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,4 +35,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+MigrateDatabase();
+
 app.Run();
+
+void MigrateDatabase()
+{
+    // Cria um escopo de serviço para realizar a migração do banco de dados -> Esse serviceScope é um contêiner temporário para resolver dependências necessárias para a migração.
+    var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+    var connectionString = builder.Configuration.ConnectionString();
+    DataBaseMigration.Migrate(connectionString, serviceScope.ServiceProvider);
+}
+
+public partial class Program 
+{ 
+}
