@@ -7,8 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MyRecipeBook.Communication\MyRecipeBook.Communication.csproj" />
-    <ProjectReference Include="..\..\..\MyRecipeBook.Exception\MyRecipeBook.Exception.csproj" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\MyRecipeBook.Communication\MyRecipeBook.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\MyRecipeBook.Exception\MyRecipeBook.Exceptions.csproj" />
+    <ProjectReference Include="..\MyRecipeBook.Domain\MyRecipeBook.Domain.csproj" />
   </ItemGroup>
 
 </Project>

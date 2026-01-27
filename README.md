@@ -1,20 +1,11 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# 🍽️ API de Receitas (.NET)
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+🚧 **Projeto em desenvolvimento** 🚧
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Este projeto é uma **API de receitas**, desenvolvida como parte de um curso focado em criação de APIs reais com .NET.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+O objetivo é aplicar, na prática, conceitos e boas práticas usadas em projetos profissionais, como arquitetura limpa, DDD, testes, CI/CD e deploy em cloud.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+O código pode sofrer mudanças frequentes, refatorações e ajustes conforme o andamento do curso e do aprendizado.
+
+Este repositório tem caráter **educacional** e **não está pronto para produção** no momento.
