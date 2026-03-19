@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -17,29 +18,21 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0' # ajuste se seu projeto usar outra versão
+          dotnet-version: '7.0' # ajuste se necessário
 
-      # 3️⃣ Debug: lista arquivos na raiz
-      - name: List repo root (debug)
-        run: ls -la
-
-      # 4️⃣ Debug: lista arquivos da pasta src
-      - name: List src folder (debug)
-        run: ls -la src/
-
-      # 5️⃣ Restaura dependências usando a solução na raiz
+      # 3️⃣ Restaura dependências usando a solução na raiz
       - name: Restore dependencies
         run: dotnet restore MeuLivroDeReceitas.sln
 
-      # 6️⃣ Build
+      # 4️⃣ Build
       - name: Build
         run: dotnet build MeuLivroDeReceitas.sln --no-restore
 
-      # 7️⃣ Testes
+      # 5️⃣ Executa testes
       - name: Run tests
         run: dotnet test MeuLivroDeReceitas.sln --no-build --verbosity normal
 
-      # 8️⃣ SonarCloud Scan
+      # 6️⃣ SonarCloud Scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         with:
