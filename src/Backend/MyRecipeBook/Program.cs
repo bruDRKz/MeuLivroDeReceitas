@@ -41,6 +41,9 @@ app.Run();
 
 void MigrateDatabase()
 {
+    if (builder.Configuration.IsUnitTestEnviroment())
+        return;
+
     // Cria um escopo de serviço para realizar a migração do banco de dados -> Esse serviceScope é um contêiner temporário para resolver dependências necessárias para a migração.
     var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
     var connectionString = builder.Configuration.ConnectionString();
